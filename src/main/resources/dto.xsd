@@ -1,0 +1,71 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="dto.soap-crud.jalian.com"
+        elementFormDefault="qualified"
+        xmlns:tns="dto.soap-crud.jalian.com">
+
+
+    <complexType name="studentDto">
+        <sequence>
+            <element name="firstName" type="string"/>
+            <element name="lastName" type="string"/>
+            <element name="courses" type="tns:courseDto" maxOccurs="unbounded" nillable="true"/>
+        </sequence>
+    </complexType>
+    <complexType name="courseDto">
+        <sequence>
+            <element name="name" type="string"/>
+            <element name="startDate" type="date"/>
+            <element type="date" name="endDate"/>
+        </sequence>
+    </complexType>
+    <element name="createStudentRequest" type="tns:studentDto"/>
+    <element name="getStudentByIdRequest">
+        <complexType>
+            <sequence>
+                <element name="id" type="integer"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="getStudentByIdResponse">
+        <complexType>
+            <sequence>
+                <element name="student" type="tns:studentDto"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="response">
+        <complexType>
+            <sequence>
+                <element name="result" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="deleteStudentRequest">
+        <complexType>
+            <sequence>
+                <element name="id" type="integer"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="deleteCourseRequest">
+        <complexType>
+            <sequence>
+                <element name="id" type="integer"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="addCourseToStudentRequest">
+        <complexType>
+            <sequence>
+                <element name="studentId" type="integer"/>
+                <element name="courses" type="tns:courseDto" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="addCourseToStudentResponse">
+        <complexType>
+            <sequence>
+                <element name="courses" type="tns:courseDto" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+</schema>
